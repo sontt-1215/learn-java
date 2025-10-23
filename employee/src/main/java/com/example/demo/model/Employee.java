@@ -10,23 +10,46 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String employeeCode;
     private String name;
-    private String department;
+    private String employeeCode;
     private Double salary;
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    @ManyToOne
+    @JoinColumn(name = "department_id")
+    private Department department;
 
-    public String getEmployeeCode() { return employeeCode; }
-    public void setEmployeeCode(String employeeCode) { this.employeeCode = employeeCode; }
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public String getDepartment() { return department; }
-    public void setDepartment(String department) { this.department = department; }
+    public String getEmployeeCode() {
+        return employeeCode;
+    }
+    public void setEmployeeCode(String employeeCode) {
+        this.employeeCode = employeeCode;
+    }
 
-    public Double getSalary() { return salary; }
-    public void setSalary(Double salary) { this.salary = salary; }
+    public Double getSalary() {
+        return salary;
+    }
+    public void setSalary(Double salary) {
+        this.salary = salary;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
 }

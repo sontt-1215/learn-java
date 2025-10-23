@@ -1,42 +1,36 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.Employee;
-import com.example.demo.service.EmployeeService;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import java.util.*;
 
 @RestController
-@RequestMapping("/employees")
+@RequestMapping("/api/employees")
 public class EmployeeController {
 
-    private final EmployeeService employeeService;
-    public EmployeeController(EmployeeService employeeService) {
-        this.employeeService = employeeService;
+    private final List<Map<String, Object>> employees = new ArrayList<>();
+
+    public EmployeeController() {
+        employees.add(Map.of("id", 1, "name", "Sơn", "email", "son@example.com", "department", "IT"));
+        employees.add(Map.of("id", 2, "name", "Hà", "email", "ha@example.com", "department", "HR"));
     }
 
     @GetMapping
-    public List<Employee> getAll() {
-        return employeeService.getAll();
+    public List<Map<String, Object>> getAll() {
+        return employees;
     }
 
     @PostMapping
-    public Employee create(@RequestBody Employee employee) {
-        return employeeService.create(employee);
+    public Map<String, Object> create(@RequestBody Map<String, Object> newEmployee) {
+        newEmployee.put("id", employees.size() + 1);
+        employees.add(newEmployee);
+        return newEmployee;
     }
 
-    @PutMapping("/{id}")
-    public Employee update(@PathVariable Long id, @RequestBody Employee employee) {
-        return employeeService.update(id, employee);
-    }
-
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
-        employeeService.delete(id);
-    }
-
-    @GetMapping("/department/{department}")
-    public List<Employee> byDepartment(@PathVariable String department) {
-        return employeeService.findByDepartment(department);
+    @GetMapping("/{id}")
+    public Map<String, Object> getById(@PathVariable int id) {
+        return employees.stream()
+                .filter(emp -> emp.get("id").equals(id))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("Employee not found"));
     }
 }
