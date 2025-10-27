@@ -1,6 +1,9 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 @Entity
 @Table(name = "employees")
@@ -10,8 +13,14 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Employee name cannot be blank")
     private String name;
+
+    @NotBlank(message = "Employee code cannot be blank")
     private String employeeCode;
+
+    @NotNull(message = "Salary cannot be null")
+    @Positive(message = "Salary must be greater than 0")
     private Double salary;
 
     @ManyToOne
