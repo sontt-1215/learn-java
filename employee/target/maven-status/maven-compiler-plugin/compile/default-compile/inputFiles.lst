@@ -1,5 +1,7 @@
 /home/tran.thanh.son@sun-asterisk.com/Desktop/learn-java/employee/src/main/java/com/example/demo/DemoApplication.java
 /home/tran.thanh.son@sun-asterisk.com/Desktop/learn-java/employee/src/main/java/com/example/demo/config/AppConfig.java
+/home/tran.thanh.son@sun-asterisk.com/Desktop/learn-java/employee/src/main/java/com/example/demo/config/LoggingAspect.java
+/home/tran.thanh.son@sun-asterisk.com/Desktop/learn-java/employee/src/main/java/com/example/demo/config/SchedulerConfig.java
 /home/tran.thanh.son@sun-asterisk.com/Desktop/learn-java/employee/src/main/java/com/example/demo/config/SecurityConfig.java
 /home/tran.thanh.son@sun-asterisk.com/Desktop/learn-java/employee/src/main/java/com/example/demo/controller/DepartmentController.java
 /home/tran.thanh.son@sun-asterisk.com/Desktop/learn-java/employee/src/main/java/com/example/demo/controller/EmployeeController.java
