@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Department</title>
+</head>
+<body>
+<h2>Add Department</h2>
+
+<form th:action="@{/departments/add}" th:object="${department}" method="post">
+    <label>Name:</label>
+    <input type="text" th:field="*{name}">
+    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+
+    <button type="submit">Save</button>
+</form>
+
+<a th:href="@{/departments/list}">Back to List</a>
+</body>
+</html>

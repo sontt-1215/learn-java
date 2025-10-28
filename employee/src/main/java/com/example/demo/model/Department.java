@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import java.util.List;
 
 @Entity
@@ -11,6 +12,7 @@ public class Department {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Department name cannot be blank")
     private String name;
 
     @OneToMany(mappedBy = "department", cascade = CascadeType.ALL)

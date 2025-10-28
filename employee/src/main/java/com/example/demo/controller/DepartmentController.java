@@ -2,13 +2,14 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Department;
 import com.example.demo.service.DepartmentService;
-import org.springframework.http.ResponseEntity;
+import jakarta.validation.Valid;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
-@RestController
-@RequestMapping("/api/db/departments")
+@Controller
+@RequestMapping("/departments")
 public class DepartmentController {
 
     private final DepartmentService departmentService;
@@ -17,24 +18,32 @@ public class DepartmentController {
         this.departmentService = departmentService;
     }
 
-    @GetMapping
-    public List<Department> getAll() {
-        return departmentService.getAll();
+    @GetMapping("/list")
+    public String listDepartments(Model model) {
+        model.addAttribute("departments", departmentService.getAllDepartments());
+        return "departments/list";
     }
 
-    @PostMapping
-    public Department create(@RequestBody Department department) {
-        return departmentService.create(department);
+    @GetMapping("/add")
+    public String showAddForm(Model model) {
+        model.addAttribute("department", new Department());
+        return "departments/add";
     }
 
-    @PutMapping("/{id}")
-    public Department update(@PathVariable Long id, @RequestBody Department department) {
-        return departmentService.update(id, department);
+    @PostMapping("/add")
+    public String addDepartment(@Valid @ModelAttribute("department") Department department,
+                                BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return "departments/add";
+        }
+        departmentService.saveDepartment(department);
+        return "redirect:/departments/list";
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
-        departmentService.delete(id);
-        return ResponseEntity.noContent().build();
+    @GetMapping("/search")
+    public String search(@RequestParam("keyword") String keyword, Model model) {
+        model.addAttribute("departments", departmentService.searchByName(keyword));
+        model.addAttribute("keyword", keyword);
+        return "departments/list";
     }
 }
