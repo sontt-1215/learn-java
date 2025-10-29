@@ -1,37 +1,27 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <title>Employee List</title>
+    <title>E List</title>
 </head>
 <body>
-<h2>Employee List</h2>
+<h2>Department List</h2>
 
-<form th:action="@{/employees/search}" method="get">
-    <input type="text" name="name" placeholder="Search by name">
-    <input type="text" name="department" placeholder="Search by department">
+<form th:action="@{/departments/search}" method="get">
+    <input type="text" name="keyword" placeholder="Search by name" th:value="${keyword}">
     <button type="submit">Search</button>
 </form>
 
-<a th:href="@{/employees/add}">Add New Employee</a>
+<a th:href="@{/departments/add}">Add New Department</a>
 
 <table border="1">
     <tr>
         <th>ID</th>
         <th>Name</th>
-        <th>Code</th>
-        <th>Salary</th>
-        <th>Department</th>
-        <th>Action</th>
     </tr>
-    <tr th:each="emp : ${employees}">
-        <td th:text="${emp.id}"></td>
-        <td th:text="${emp.name}"></td>
-        <td th:text="${emp.employeeCode}"></td>
-        <td th:text="${emp.salary}"></td>
-        <td th:text="${emp.department != null ? emp.department.name : 'N/A'}"></td>
-        <td>
-            <a th:href="@{'/employees/delete/' + ${emp.id}}">Delete</a>
-        </td>
+    <tr th:each="dept : ${departments}">
+        <td th:text="${dept.id}"></td>
+        <td th:text="${dept.name}"></td>
     </tr>
 </table>
 

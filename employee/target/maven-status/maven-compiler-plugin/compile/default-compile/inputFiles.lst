@@ -3,6 +3,7 @@
 /home/tran.thanh.son@sun-asterisk.com/Desktop/learn-java/employee/src/main/java/com/example/demo/config/LoggingAspect.java
 /home/tran.thanh.son@sun-asterisk.com/Desktop/learn-java/employee/src/main/java/com/example/demo/config/SchedulerConfig.java
 /home/tran.thanh.son@sun-asterisk.com/Desktop/learn-java/employee/src/main/java/com/example/demo/config/SecurityConfig.java
+/home/tran.thanh.son@sun-asterisk.com/Desktop/learn-java/employee/src/main/java/com/example/demo/controller/AuthController.java
 /home/tran.thanh.son@sun-asterisk.com/Desktop/learn-java/employee/src/main/java/com/example/demo/controller/DepartmentController.java
 /home/tran.thanh.son@sun-asterisk.com/Desktop/learn-java/employee/src/main/java/com/example/demo/controller/EmployeeController.java
 /home/tran.thanh.son@sun-asterisk.com/Desktop/learn-java/employee/src/main/java/com/example/demo/controller/EmployeeDbController.java
@@ -12,8 +13,10 @@
 /home/tran.thanh.son@sun-asterisk.com/Desktop/learn-java/employee/src/main/java/com/example/demo/exception/ResourceNotFoundException.java
 /home/tran.thanh.son@sun-asterisk.com/Desktop/learn-java/employee/src/main/java/com/example/demo/model/Department.java
 /home/tran.thanh.son@sun-asterisk.com/Desktop/learn-java/employee/src/main/java/com/example/demo/model/Employee.java
+/home/tran.thanh.son@sun-asterisk.com/Desktop/learn-java/employee/src/main/java/com/example/demo/model/User.java
 /home/tran.thanh.son@sun-asterisk.com/Desktop/learn-java/employee/src/main/java/com/example/demo/repository/DepartmentRepository.java
 /home/tran.thanh.son@sun-asterisk.com/Desktop/learn-java/employee/src/main/java/com/example/demo/repository/EmployeeRepository.java
+/home/tran.thanh.son@sun-asterisk.com/Desktop/learn-java/employee/src/main/java/com/example/demo/repository/UserRepository.java
 /home/tran.thanh.son@sun-asterisk.com/Desktop/learn-java/employee/src/main/java/com/example/demo/service/DepartmentService.java
 /home/tran.thanh.son@sun-asterisk.com/Desktop/learn-java/employee/src/main/java/com/example/demo/service/EmployeeService.java
 /home/tran.thanh.son@sun-asterisk.com/Desktop/learn-java/employee/src/main/java/com/example/demo/service/UtilityService.java

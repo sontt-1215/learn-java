@@ -1,27 +1,66 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <title>Department List</title>
+    <meta charset="UTF-8">
+    <title>Employee List</title>
 </head>
 <body>
-<h2>Department List</h2>
 
-<form th:action="@{/departments/search}" method="get">
-    <input type="text" name="keyword" placeholder="Search by name" th:value="${keyword}">
+<h2>Employee List</h2>
+<div>
+    Logged in as: <b sec:authentication="name"></b> |
+    Role: <b sec:authentication="principal.authorities"></b> |
+    <a th:href="@{/logout}">Logout</a>
+</div>
+
+<hr>
+
+<form th:action="@{/employees/search}" method="get">
+    <input type="text" name="name" placeholder="Search by name" th:value="${name}">
+    <select name="departmentId">
+        <option value="">-- All Departments --</option>
+        <option th:each="dept : ${departments}"
+                th:value="${dept.id}"
+                th:text="${dept.name}"
+                th:selected="${dept.id} == ${departmentId}">
+        </option>
+    </select>
     <button type="submit">Search</button>
 </form>
 
-<a th:href="@{/departments/add}">Add New Department</a>
+<div sec:authorize="hasRole('ADMIN')">
+    <a th:href="@{/employees/add}">Add New Employee</a>
+</div>
 
-<table border="1">
+<br>
+
+<table border="1" cellpadding="5" cellspacing="0">
+    <thead>
     <tr>
         <th>ID</th>
         <th>Name</th>
+        <th>Employee Code</th>
+        <th>Salary</th>
+        <th>Department</th>
+        <th sec:authorize="hasRole('ADMIN')">Actions</th>
     </tr>
-    <tr th:each="dept : ${departments}">
-        <td th:text="${dept.id}"></td>
-        <td th:text="${dept.name}"></td>
+    </thead>
+    <tbody>
+    <tr th:each="emp : ${employees}">
+        <td th:text="${emp.id}"></td>
+        <td th:text="${emp.name}"></td>
+        <td th:text="${emp.employeeCode}"></td>
+        <td th:text="${emp.salary}"></td>
+        <td th:text="${emp.department != null ? emp.department.name : 'N/A'}"></td>
+
+        <td sec:authorize="hasRole('ADMIN')">
+            <a th:href="@{'/employees/edit/' + ${emp.id}}">Edit</a> |
+            <a th:href="@{'/employees/delete/' + ${emp.id}}" 
+               onclick="return confirm('Are you sure?')">Delete</a>
+        </td>
     </tr>
+    </tbody>
 </table>
 
 </body>

@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import org.springframework.security.core.Authentication; 
 
 @Controller
 @RequestMapping("/employees")
@@ -24,9 +25,10 @@ public class EmployeeDbController {
     }
 
     @GetMapping("/list")
-    public String listEmployees(Model model) {
+    public String listEmployees(Model model, Authentication auth) {
         model.addAttribute("employees", employeeService.getAllEmployees());
-        return "employees/list";
+        model.addAttribute("role", auth.getAuthorities().toString());
+        return "employee_list";
     }
 
     @GetMapping("/add")
