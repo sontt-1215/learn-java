@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: demo
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  sql:
+    init:
+      mode: always
+
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    cache: false
+
+  profiles:
+    active: dev

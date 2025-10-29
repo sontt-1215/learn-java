@@ -3,6 +3,7 @@ package com.example.demo.service;
 import com.example.demo.model.Employee;
 import com.example.demo.repository.EmployeeRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.cache.annotation.Cacheable;
 
 import java.util.List;
 
@@ -15,6 +16,7 @@ public class EmployeeService {
         this.employeeRepository = employeeRepository;
     }
 
+    @Cacheable("employees")
     public List<Employee> getAllEmployees() {
         return employeeRepository.findAll();
     }
