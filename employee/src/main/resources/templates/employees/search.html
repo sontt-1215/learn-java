@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Add Employee</title>
+</head>
+<body>
+<h2>Add Employee</h2>
+
+<form th:action="@{/employees/add}" th:object="${employee}" method="post">
+    <label>Name:</label>
+    <input type="text" th:field="*{name}">
+    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+
+    <label>Code:</label>
+    <input type="text" th:field="*{employeeCode}">
+    <div th:if="${#fields.hasErrors('employeeCode')}" th:errors="*{employeeCode}"></div>
+
+    <label>Salary:</label>
+    <input type="number" step="0.01" th:field="*{salary}">
+    <div th:if="${#fields.hasErrors('salary')}" th:errors="*{salary}"></div>
+
+    <label>Department:</label>
+    <select th:field="*{department}">
+        <option th:each="dept : ${departments}" 
+                th:value="${dept}" 
+                th:text="${dept.name}"></option>
+    </select>
+
+    <button type="submit">Save</button>
+</form>
+
+<a th:href="@{/employees/list}">Back to List</a>
+</body>
+</html>
