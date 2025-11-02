@@ -71,4 +71,11 @@ public class EmployeeDbController {
 
         return "employees/search";
     }
+
+    @GetMapping("/employees/statistics")
+    public String showStatistics(Model model) {
+        model.addAttribute("stats", employeeService.countEmployeesByDepartment());
+        model.addAttribute("total", employeeService.getTotalEmployees());
+        return "employees/statistics";
+    }
 }
