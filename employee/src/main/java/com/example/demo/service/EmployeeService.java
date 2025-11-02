@@ -5,7 +5,7 @@ import com.example.demo.repository.EmployeeRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.cache.annotation.Cacheable;
 
-import java.util.List;
+import java.util.*;
 
 @Service
 public class EmployeeService {
@@ -45,4 +45,21 @@ public class EmployeeService {
         return employeeRepository.findAll();
     }
 
+    public List<Map<String, Object>> countEmployeesByDepartment() {
+        List<Object[]> results = employeeRepository.countEmployeesByDepartment();
+        List<Map<String, Object>> stats = new ArrayList<>();
+
+        for (Object[] row : results) {
+            Map<String, Object> map = new HashMap<>();
+            map.put("department", row[0]);
+            map.put("count", row[1]);
+            stats.add(map);
+        }
+
+        return stats;
+    }
+
+    public Long getTotalEmployees() {
+        return employeeRepository.countTotalEmployees();
+    }
 }

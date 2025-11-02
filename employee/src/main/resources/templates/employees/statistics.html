@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Employee Statistics</title>
+</head>
+<body>
+<h2>Employee Statistics</h2>
+
+<p>Total Employees: <b th:text="${total}"></b></p>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Department</th>
+            <th>Employee Count</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="stat : ${stats}">
+            <td th:text="${stat.department}"></td>
+            <td th:text="${stat.count}"></td>
+        </tr>
+    </tbody>
+</table>
+
+<a th:href="@{/employees/list}">Back to Employee List</a>
+</body>
+</html>
